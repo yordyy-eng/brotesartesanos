@@ -1,0 +1,719 @@
+{
+  "source": "CATÁLOGO ARTESANOS 2026.pdf",
+  "total_pages": 52,
+  "total_images_extracted": 385,
+  "total_links": 44,
+  "structure": {
+    "pages_1_8": "Portada, índice, galería de recuerdos, historia",
+    "pages_9_49": "Catálogo artesanos (una doble página por artesano)",
+    "page_50": "Agradecimientos + logos de patrocinadores",
+    "pages_51_52": "Créditos / cierre"
+  },
+  "pages": {
+    "1": {
+      "images": [
+        "p01_img01.jpg",
+        "p01_img02.png",
+        "p01_img03.jpg",
+        "p01_img04.png",
+        "p01_img05.png",
+        "p01_img06.jpg",
+        "p01_img07.png",
+        "p01_img08.jpg",
+        "p01_img09.jpg",
+        "p01_img10.png",
+        "p01_img11.png",
+        "p01_img12.jpg",
+        "p01_img13.jpg",
+        "p01_img14.png",
+        "p01_img15.png",
+        "p01_img16.jpg"
+      ]
+    },
+    "2": {
+      "images": [
+        "p02_img01.jpg",
+        "p02_img02.png",
+        "p02_img03.jpg",
+        "p02_img04.jpg",
+        "p02_img05.png",
+        "p02_img06.jpg"
+      ]
+    },
+    "3": {
+      "images": [
+        "p03_img01.jpg",
+        "p03_img02.png",
+        "p03_img03.jpg",
+        "p03_img04.jpg",
+        "p03_img05.png"
+      ]
+    },
+    "4": {
+      "images": [
+        "p04_img01.jpg",
+        "p04_img02.jpg",
+        "p04_img03.jpg",
+        "p04_img04.png",
+        "p04_img05.jpg",
+        "p04_img06.jpg",
+        "p04_img07.jpg",
+        "p04_img08.png"
+      ]
+    },
+    "6": {
+      "images": [
+        "p06_img01.jpg",
+        "p06_img02.jpg",
+        "p06_img03.png",
+        "p06_img04.jpg",
+        "p06_img05.png",
+        "p06_img06.jpg",
+        "p06_img07.jpg",
+        "p06_img08.png",
+        "p06_img09.jpg",
+        "p06_img10.jpg",
+        "p06_img11.jpg",
+        "p06_img12.png"
+      ]
+    },
+    "7": {
+      "images": [
+        "p07_img01.jpg",
+        "p07_img02.jpg",
+        "p07_img03.png",
+        "p07_img04.jpg",
+        "p07_img05.jpg",
+        "p07_img06.jpg",
+        "p07_img07.jpg",
+        "p07_img08.png"
+      ]
+    },
+    "8": {
+      "images": [
+        "p08_img01.jpg",
+        "p08_img02.png",
+        "p08_img03.jpg",
+        "p08_img04.jpg",
+        "p08_img05.png",
+        "p08_img06.jpg",
+        "p08_img07.jpg",
+        "p08_img08.png",
+        "p08_img09.jpg",
+        "p08_img10.jpg",
+        "p08_img11.png",
+        "p08_img12.jpg",
+        "p08_img13.jpg",
+        "p08_img14.png",
+        "p08_img15.jpg",
+        "p08_img16.jpg",
+        "p08_img17.png",
+        "p08_img18.jpg",
+        "p08_img19.jpg",
+        "p08_img20.png",
+        "p08_img21.jpg",
+        "p08_img22.jpg",
+        "p08_img23.png",
+        "p08_img24.jpg",
+        "p08_img25.jpg",
+        "p08_img26.png",
+        "p08_img27.jpg",
+        "p08_img28.jpg",
+        "p08_img29.png",
+        "p08_img30.jpg",
+        "p08_img31.jpg",
+        "p08_img32.jpg",
+        "p08_img33.png"
+      ]
+    },
+    "9": {
+      "images": [
+        "p09_img01.jpg",
+        "p09_img02.png",
+        "p09_img03.jpg",
+        "p09_img04.png",
+        "p09_img05.png",
+        "p09_img06.jpg",
+        "p09_img07.png",
+        "p09_img08.jpg",
+        "p09_img09.png",
+        "p09_img10.jpg",
+        "p09_img11.png",
+        "p09_img12.jpg",
+        "p09_img13.jpg",
+        "p09_img14.png"
+      ]
+    },
+    "10": {
+      "links": [
+        "https://www.instagram.com/grabadoslinares/"
+      ]
+    },
+    "11": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p11_img01.jpg",
+        "p11_img02.jpg",
+        "p11_img03.jpg",
+        "p11_img04.jpg",
+        "p11_img05.jpg",
+        "p11_img06.jpg",
+        "p11_img07.jpg",
+        "p11_img08.jpg",
+        "p11_img09.jpg",
+        "p11_img10.jpg"
+      ]
+    },
+    "12": {
+      "links": [
+        "https://www.instagram.com/caladosvergara?utm_source=qr&igsh=bHgyNnA2aG5kbmc%3D",
+        "https://www.instagram.com/chupallas_de_trigo/"
+      ],
+      "images": [
+        "p12_img01.jpg",
+        "p12_img02.png",
+        "p12_img03.jpg",
+        "p12_img04.jpg",
+        "p12_img05.jpg",
+        "p12_img06.jpg",
+        "p12_img07.jpg",
+        "p12_img08.jpg",
+        "p12_img09.jpg",
+        "p12_img10.jpg",
+        "p12_img11.png",
+        "p12_img12.jpg"
+      ]
+    },
+    "13": {
+      "images": [
+        "p13_img01.jpg",
+        "p13_img02.jpg",
+        "p13_img03.jpg",
+        "p13_img04.jpg",
+        "p13_img05.jpg",
+        "p13_img06.jpg",
+        "p13_img07.jpg",
+        "p13_img08.jpg"
+      ]
+    },
+    "14": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p14_img01.jpg",
+        "p14_img02.jpg",
+        "p14_img03.jpg",
+        "p14_img04.jpg",
+        "p14_img05.jpg"
+      ]
+    },
+    "15": {
+      "links": [
+        "https://www.instagram.com/queltehue__?igsh=cmF6bTJxMmIwMGpz&utm_source=qr"
+      ],
+      "images": [
+        "p15_img01.jpg",
+        "p15_img02.jpg",
+        "p15_img03.jpg",
+        "p15_img04.jpg",
+        "p15_img05.jpg",
+        "p15_img06.jpg",
+        "p15_img07.jpg",
+        "p15_img08.jpg",
+        "p15_img09.jpg",
+        "p15_img10.jpg"
+      ]
+    },
+    "16": {
+      "links": [
+        "https://www.instagram.com/topacio.taller/"
+      ],
+      "images": [
+        "p16_img01.jpg"
+      ]
+    },
+    "17": {
+      "links": [
+        "https://www.instagram.com/chupallas_de_trigo/"
+      ],
+      "images": [
+        "p17_img01.jpg",
+        "p17_img02.jpg",
+        "p17_img03.jpg"
+      ]
+    },
+    "18": {
+      "links": [
+        "https://www.instagram.com/joyasnaynay/"
+      ],
+      "images": [
+        "p18_img01.jpg",
+        "p18_img02.jpg",
+        "p18_img03.jpg",
+        "p18_img04.jpg",
+        "p18_img05.jpg",
+        "p18_img06.jpg",
+        "p18_img07.jpg",
+        "p18_img08.jpg"
+      ]
+    },
+    "19": {
+      "links": [
+        "https://www.instagram.com/n3olitico/"
+      ],
+      "images": [
+        "p19_img01.jpg",
+        "p19_img02.jpg",
+        "p19_img03.jpg",
+        "p19_img04.jpg",
+        "p19_img05.jpg",
+        "p19_img06.jpg",
+        "p19_img07.jpg",
+        "p19_img08.jpg",
+        "p19_img09.jpg",
+        "p19_img10.jpg"
+      ]
+    },
+    "20": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p20_img01.jpg",
+        "p20_img02.jpg",
+        "p20_img03.jpg",
+        "p20_img04.jpg",
+        "p20_img05.jpg",
+        "p20_img06.jpg",
+        "p20_img07.jpg",
+        "p20_img08.jpg"
+      ]
+    },
+    "21": {
+      "links": [
+        "https://www.instagram.com/grabadosenvidrio/?hl=es"
+      ],
+      "images": [
+        "p21_img01.jpg",
+        "p21_img02.jpg",
+        "p21_img03.jpg"
+      ]
+    },
+    "22": {
+      "links": [
+        "https://www.instagram.com/jorge_artesanoencuero/"
+      ],
+      "images": [
+        "p22_img01.jpg",
+        "p22_img02.jpg"
+      ]
+    },
+    "23": {
+      "links": [
+        "https://www.instagram.com/rastadecobre/"
+      ],
+      "images": [
+        "p23_img01.jpg",
+        "p23_img02.jpg",
+        "p23_img03.jpg",
+        "p23_img04.jpg"
+      ]
+    },
+    "24": {
+      "links": [
+        "https://www.instagram.com/grabadoslinares/"
+      ],
+      "images": [
+        "p24_img01.jpg",
+        "p24_img02.jpg"
+      ]
+    },
+    "25": {
+      "links": [
+        "https://www.instagram.com/grabadoslinares/"
+      ],
+      "images": [
+        "p25_img01.jpg",
+        "p25_img02.jpg",
+        "p25_img03.jpg",
+        "p25_img04.jpg",
+        "p25_img05.jpg",
+        "p25_img06.jpg",
+        "p25_img07.jpg",
+        "p25_img08.jpg"
+      ]
+    },
+    "26": {
+      "links": [
+        "https://www.instagram.com/n3olitico/"
+      ],
+      "images": [
+        "p26_img01.jpg"
+      ]
+    },
+    "27": {
+      "links": [
+        "https://www.instagram.com/kulungu.crafts/"
+      ]
+    },
+    "28": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p28_img01.jpg",
+        "p28_img02.jpg",
+        "p28_img03.jpg",
+        "p28_img04.jpg",
+        "p28_img05.jpg",
+        "p28_img06.png",
+        "p28_img07.png",
+        "p28_img08.jpg",
+        "p28_img09.jpg",
+        "p28_img10.jpg",
+        "p28_img11.jpg",
+        "p28_img12.jpg"
+      ]
+    },
+    "29": {
+      "links": [
+        "https://www.instagram.com/rusti2628?igsh=MXNuMmY5azJ4dWFpdQ%3D%3D"
+      ],
+      "images": [
+        "p29_img01.jpg",
+        "p29_img02.jpg"
+      ]
+    },
+    "30": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p30_img01.jpg"
+      ]
+    },
+    "31": {
+      "links": [
+        "https://www.instagram.com/asunarte__/"
+      ],
+      "images": [
+        "p31_img01.jpg",
+        "p31_img02.jpg",
+        "p31_img03.jpg"
+      ]
+    },
+    "32": {
+      "links": [
+        "https://www.instagram.com/artetextil.angol/"
+      ]
+    },
+    "33": {
+      "links": [
+        "https://www.instagram.com/artetextil.angol/"
+      ],
+      "images": [
+        "p33_img01.jpg",
+        "p33_img02.jpg",
+        "p33_img03.jpg"
+      ]
+    },
+    "34": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p34_img01.jpg",
+        "p34_img02.jpg",
+        "p34_img03.jpg",
+        "p34_img04.jpg",
+        "p34_img05.jpg",
+        "p34_img06.jpg",
+        "p34_img07.jpg",
+        "p34_img08.jpg",
+        "p34_img09.jpg",
+        "p34_img10.jpg"
+      ]
+    },
+    "35": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p35_img01.jpg",
+        "p35_img02.jpg",
+        "p35_img03.png",
+        "p35_img04.png",
+        "p35_img05.jpg",
+        "p35_img06.jpg"
+      ]
+    },
+    "36": {
+      "links": [
+        "https://www.instagram.com/rastadecobre/"
+      ],
+      "images": [
+        "p36_img01.jpg",
+        "p36_img02.jpg"
+      ]
+    },
+    "37": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p37_img01.jpg"
+      ]
+    },
+    "38": {
+      "links": [
+        "https://www.instagram.com/elmundodemussa/"
+      ],
+      "images": [
+        "p38_img01.jpg",
+        "p38_img02.jpg",
+        "p38_img03.jpg",
+        "p38_img04.jpg",
+        "p38_img05.jpg",
+        "p38_img06.jpg",
+        "p38_img07.png",
+        "p38_img08.png",
+        "p38_img09.jpg",
+        "p38_img10.jpg",
+        "p38_img11.jpg",
+        "p38_img12.jpg"
+      ]
+    },
+    "39": {
+      "links": [
+        "https://www.instagram.com/grabadoslinares/"
+      ],
+      "images": [
+        "p39_img01.jpg",
+        "p39_img02.jpg",
+        "p39_img03.jpg",
+        "p39_img04.jpg",
+        "p39_img05.jpg",
+        "p39_img06.jpg",
+        "p39_img07.png",
+        "p39_img08.png",
+        "p39_img09.jpg",
+        "p39_img10.jpg",
+        "p39_img11.jpg",
+        "p39_img12.jpg"
+      ]
+    },
+    "40": {
+      "links": [
+        "https://www.instagram.com/ondejulio_gredasquillon/"
+      ],
+      "images": [
+        "p40_img01.jpg"
+      ]
+    },
+    "41": {
+      "links": [
+        "https://www.instagram.com/newen.fuerzayenergia/?hl=es-la"
+      ],
+      "images": [
+        "p41_img01.jpg",
+        "p41_img02.jpg"
+      ]
+    },
+    "42": {
+      "links": [
+        "https://www.instagram.com/grabadoslinares/"
+      ],
+      "images": [
+        "p42_img01.jpg",
+        "p42_img02.jpg",
+        "p42_img03.jpg",
+        "p42_img04.jpg",
+        "p42_img05.jpg",
+        "p42_img06.jpg",
+        "p42_img07.jpg",
+        "p42_img08.jpg",
+        "p42_img09.jpg",
+        "p42_img10.jpg"
+      ]
+    },
+    "43": {
+      "links": [
+        "https://www.instagram.com/turriart/"
+      ],
+      "images": [
+        "p43_img01.jpg",
+        "p43_img02.jpg",
+        "p43_img03.jpg",
+        "p43_img04.jpg",
+        "p43_img05.jpg",
+        "p43_img06.jpg",
+        "p43_img07.jpg",
+        "p43_img08.jpg"
+      ]
+    },
+    "44": {
+      "links": [
+        "https://www.instagram.com/licanrayenab/"
+      ],
+      "images": [
+        "p44_img01.jpg"
+      ]
+    },
+    "45": {
+      "links": [
+        "https://www.instagram.com/pamelagacitua_artemadera?igsh=dGlqOHBtdnc2MTJw"
+      ],
+      "images": [
+        "p45_img01.jpg",
+        "p45_img02.jpg",
+        "p45_img03.jpg",
+        "p45_img04.jpg"
+      ]
+    },
+    "46": {
+      "links": [
+        "https://www.instagram.com/joyasnaynay/"
+      ]
+    },
+    "47": {
+      "links": [
+        "https://www.instagram.com/rastadecobre/"
+      ],
+      "images": [
+        "p47_img01.jpg",
+        "p47_img02.jpg",
+        "p47_img03.jpg",
+        "p47_img04.jpg"
+      ]
+    },
+    "48": {
+      "links": [
+        "https://www.instagram.com/licanrayenab/"
+      ],
+      "images": [
+        "p48_img01.jpg",
+        "p48_img02.jpg",
+        "p48_img03.jpg",
+        "p48_img04.jpg",
+        "p48_img05.jpg",
+        "p48_img06.jpg",
+        "p48_img07.jpg",
+        "p48_img08.jpg",
+        "p48_img09.jpg",
+        "p48_img10.jpg"
+      ]
+    },
+    "49": {
+      "links": [
+        "https://www.instagram.com/pamelagacitua_artemadera?igsh=dGlqOHBtdnc2MTJw"
+      ]
+    },
+    "50": {
+      "links": [
+        "https://sellofronterasur.com/melimapu/",
+        "https://www.instagram.com/sietecolorescreaciones/",
+        "https://www.instagram.com/rustica_telares_nahuelbuta/"
+      ],
+      "images": [
+        "p50_img01.jpg",
+        "p50_img02.png",
+        "p50_img03.jpg",
+        "p50_img04.jpg",
+        "p50_img05.jpg",
+        "p50_img06.png",
+        "p50_img07.jpg",
+        "p50_img08.png",
+        "p50_img09.jpg",
+        "p50_img10.png",
+        "p50_img11.jpg",
+        "p50_img12.jpg",
+        "p50_img13.png",
+        "p50_img14.jpg",
+        "p50_img15.png",
+        "p50_img16.jpg",
+        "p50_img17.png",
+        "p50_img18.jpg",
+        "p50_img19.png",
+        "p50_img20.jpg",
+        "p50_img21.jpg",
+        "p50_img22.png",
+        "p50_img23.png",
+        "p50_img24.jpg",
+        "p50_img25.jpg",
+        "p50_img26.png",
+        "p50_img27.jpg",
+        "p50_img28.png",
+        "p50_img29.jpg",
+        "p50_img30.png",
+        "p50_img31.jpg",
+        "p50_img32.jpg",
+        "p50_img33.png",
+        "p50_img34.jpg",
+        "p50_img35.jpg",
+        "p50_img36.jpg",
+        "p50_img37.png",
+        "p50_img38.jpg",
+        "p50_img39.png",
+        "p50_img40.jpg",
+        "p50_img41.png",
+        "p50_img42.jpg",
+        "p50_img43.png",
+        "p50_img44.jpg",
+        "p50_img45.png",
+        "p50_img46.jpg",
+        "p50_img47.png",
+        "p50_img48.jpg",
+        "p50_img49.jpg",
+        "p50_img50.jpg",
+        "p50_img51.png",
+        "p50_img52.jpg",
+        "p50_img53.jpg",
+        "p50_img54.png"
+      ]
+    },
+    "51": {
+      "links": [
+        "https://www.instagram.com/claudiovisual_/"
+      ],
+      "images": [
+        "p51_img01.jpg",
+        "p51_img02.jpg",
+        "p51_img03.jpg",
+        "p51_img04.jpg",
+        "p51_img05.jpg",
+        "p51_img06.jpg"
+      ]
+    },
+    "52": {
+      "images": [
+        "p52_img01.jpg",
+        "p52_img02.jpg",
+        "p52_img03.png",
+        "p52_img04.png",
+        "p52_img05.jpg",
+        "p52_img06.png",
+        "p52_img07.jpg",
+        "p52_img08.png",
+        "p52_img09.jpg",
+        "p52_img10.png",
+        "p52_img11.jpg",
+        "p52_img12.png",
+        "p52_img13.jpg",
+        "p52_img14.png",
+        "p52_img15.jpg",
+        "p52_img16.png",
+        "p52_img17.jpg",
+        "p52_img18.png",
+        "p52_img19.png",
+        "p52_img20.jpg",
+        "p52_img21.png",
+        "p52_img22.jpg",
+        "p52_img23.png",
+        "p52_img24.png"
+      ]
+    }
+  }
+}
