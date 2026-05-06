@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Catálogo Digital: Brotes de Chile 2026
 
-## Getting Started
+Plataforma oficial del catálogo digital de artesanos para la "Muestra de Arte Popular Brotes de Chile 2026" en Angol. Desarrollado con una arquitectura moderna enfocada en rendimiento, SEO y accesibilidad (WCAG 2.2).
 
-First, run the development server:
+## 🚀 Tecnologías Principales (Tech Stack)
 
+- **Framework:** Next.js 16 (App Router)
+- **Lenguaje:** TypeScript
+- **Estilos:** Tailwind CSS 4 + Variables CSS Nativas (Diseño Premium)
+- **Animaciones:** Framer Motion
+- **Base de Datos:** PostgreSQL
+- **ORM:** Prisma
+- **Validación de Datos:** Zod
+- **Contenedores:** Docker & Docker Compose
+
+---
+
+## 🛠️ Instalación y Configuración Local (Paso a Paso)
+
+Si estás clonando el repositorio por primera vez en un nuevo equipo, sigue estos pasos exactamente en este orden para levantar el proyecto:
+
+### 1. Clonar el repositorio
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yordyy-eng/brotesartesanos.git
+cd brotesartesanos
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instalar dependencias
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Levantar la Base de Datos (PostgreSQL)
+Asegúrate de tener Docker Desktop abierto y ejecutándose en tu equipo.
+```bash
+docker-compose up -d
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Sincronizar el esquema de Prisma
+Esto creará las tablas necesarias en tu base de datos local según el archivo `schema.prisma`.
+```bash
+npx prisma db push
+```
 
-## Learn More
+### 5. Sembrar la Base de Datos (Seed)
+Este comando insertará los 40 artesanos y las 7 categorías iniciales.
+```bash
+npm run db:seed
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 6. Levantar el entorno de desarrollo
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El catálogo estará disponible en [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📂 Estructura Principal del Proyecto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `prisma/` - Contiene el esquema de BD (`schema.prisma`) y el script de extracción de datos inicial (`seed.ts`).
+- `src/app/` - Rutas principales de Next.js (Frontend y Backend).
+  - `api/` - Endpoints REST (ej. `/api/artisans`) validados con Zod.
+  - `artesano/[id]/` - Páginas individuales de perfiles dinámicos con SEO OpenGraph.
+  - `catalog-client.tsx` - Componente principal de la grilla, filtros y animaciones.
+  - `globals.css` - Sistema de diseño principal, variables y reglas de accesibilidad.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ✅ Accesibilidad (a11y)
+El proyecto cumple con las normativas **WCAG 2.2**:
+- Implementación de `skip-link` para navegación ágil por teclado.
+- Uso correcto de `aria-labels` y `aria-hidden`.
+- Indicadores visuales claros mediante `:focus-visible`.
+
+## 📌 Próximos Pasos (Roadmap)
+- Configuración de Dockerfile para la aplicación Next.js.
+- Despliegue de integración continua (CI/CD) con GitHub Actions.
