@@ -2,7 +2,7 @@ import { db } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, MapPin, Instagram, Mail, Phone } from 'lucide-react'
+import { ArrowLeft, MapPin, Camera, Mail, Phone, ExternalLink } from 'lucide-react'
 
 // Dynamic SEO metadata
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
@@ -40,74 +40,99 @@ export default async function ArtisanProfile({ params }: { params: Promise<{ id:
   const isPhone = contactLink?.startsWith('+') || contactLink?.match(/^\d+$/)
 
   return (
-    <main className="profile-page" style={{ minHeight: '100vh', padding: '5rem 1.5rem', background: 'var(--cream)' }}>
-      <div className="container-sm" style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <Link href="/#catalogo" className="back-link" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--muted)', textDecoration: 'none', marginBottom: '3rem', fontWeight: 500 }}>
-          <ArrowLeft size={18} /> Volver al catálogo
+    <main className="artisan-profile-root">
+      <div className="noise-overlay" />
+      
+      {/* Editorial Navigation */}
+      <nav className="profile-nav">
+        <Link href="/#catalogo" className="back-btn">
+          <ArrowLeft size={16} />
+          <span>Volver al Catálogo</span>
         </Link>
-        
-        <article className="profile-card" style={{ background: 'var(--white)', borderRadius: '24px', padding: '4rem 3rem', boxShadow: '0 24px 48px var(--shadow)', border: '1px solid var(--border)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '1.5rem' }}>
-            {artisan.image ? (
-              <div className="avatar-large" style={{ width: '120px', height: '120px', borderRadius: '50%', position: 'relative', overflow: 'hidden', border: '4px solid var(--cream)', boxShadow: '0 8px 16px var(--shadow)' }}>
-                <Image src={artisan.image} alt={artisan.name} fill style={{ objectFit: 'cover' }} sizes="120px" priority />
-              </div>
-            ) : (
-              <div className="avatar-large" style={{ width: '120px', height: '120px', borderRadius: '50%', background: 'var(--terracotta)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', fontFamily: '"Cormorant Garamond", serif', fontWeight: 600, boxShadow: '0 8px 16px var(--shadow)' }}>
-                {artisan.initials ?? artisan.name.slice(0, 2).toUpperCase()}
-              </div>
-            )}
-            
-            <div className="badge" style={{ background: 'var(--parchment)', color: 'var(--ink)', padding: '0.5rem 1.5rem', borderRadius: '100px', fontSize: '12px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-              {artisan.category.name}
-            </div>
+        <div className="nav-brand">Brotes de Chile <em>2026</em></div>
+      </nav>
 
-            <h1 style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.1, color: 'var(--ink)', margin: '0' }}>
-              {artisan.name}
-            </h1>
-            
-            {artisan.craft && (
-              <p style={{ fontSize: '1.4rem', color: 'var(--muted)', fontWeight: 400, fontStyle: 'italic', fontFamily: '"Cormorant Garamond", serif' }}>
-                {artisan.craft}
-              </p>
-            )}
-
-            <div style={{ display: 'flex', gap: '2rem', marginTop: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              {artisan.location && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--ink-mid)' }}>
-                  <MapPin size={18} color="var(--terracotta)" />
-                  <span>{artisan.location}</span>
+      <section className="profile-hero">
+        <div className="hero-content-grid">
+          {/* Main Visual Column */}
+          <div className="visual-column">
+            <div className="image-frame">
+              {artisan.image ? (
+                <Image 
+                  src={artisan.image} 
+                  alt={artisan.name} 
+                  fill 
+                  style={{ objectFit: 'cover' }} 
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority 
+                />
+              ) : (
+                <div className="placeholder-avatar">
+                  {artisan.initials ?? artisan.name.slice(0, 2).toUpperCase()}
                 </div>
               )}
-              
-              {contactLink && (
-                <a 
-                  href={isEmail ? `mailto:${contactLink}` : isPhone ? `tel:${contactLink}` : contactLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--ink-mid)', textDecoration: 'none', fontWeight: 500 }}
-                >
-                  {isInstagram ? <Instagram size={18} color="var(--terracotta)" /> : 
-                   isEmail ? <Mail size={18} color="var(--terracotta)" /> : 
-                   <Phone size={18} color="var(--terracotta)" />}
-                  <span>{isInstagram ? '@' + contactLink.split('instagram.com/')[1].replace('/', '') : contactLink}</span>
-                </a>
-              )}
+              <div className="image-overlay-glow" />
             </div>
+            {artisan.craft && (
+              <div className="craft-badge-floating">
+                <span>{artisan.craft}</span>
+              </div>
+            )}
           </div>
 
-          {artisan.bio && (
-            <div style={{ marginTop: '3rem', paddingTop: '3rem', borderTop: '1px solid var(--parchment)' }}>
-              <h2 style={{ fontSize: '1.2rem', color: 'var(--terracotta)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '1.5rem', fontFamily: '"DM Sans", sans-serif', fontWeight: 500 }}>
-                Sobre el oficio
-              </h2>
-              <p style={{ fontSize: '1.15rem', color: 'var(--ink-mid)', lineHeight: 1.8, fontWeight: 300 }}>
-                {artisan.bio}
+          {/* Text Content Column */}
+          <div className="content-column">
+            <header className="profile-header">
+              <div className="category-tag-profile">
+                {artisan.category.name}
+              </div>
+              <h1 className="artisan-name-display">
+                {artisan.name}
+              </h1>
+              
+              <div className="profile-metadata">
+                {artisan.location && (
+                  <div className="meta-item-profile">
+                    <MapPin size={16} className="text-terracotta" />
+                    <span>{artisan.location}</span>
+                  </div>
+                )}
+                
+                {contactLink && (
+                  <a 
+                    href={isEmail ? `mailto:${contactLink}` : isPhone ? `tel:${contactLink}` : contactLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="meta-item-profile contact-link-profile"
+                  >
+                    {isInstagram ? <Camera size={16} /> : 
+                     isEmail ? <Mail size={16} /> : 
+                     <Phone size={16} />}
+                    <span>{isInstagram ? '@' + contactLink.split('instagram.com/')[1].replace('/', '') : contactLink}</span>
+                    <ExternalLink size={12} className="opacity-40" />
+                  </a>
+                )}
+              </div>
+            </header>
+
+            <div className="profile-bio-section">
+              <h3 className="section-subtitle-profile">El Oficio y el Legado</h3>
+              <p className="bio-text-profile">
+                {artisan.bio || "Este artesano/a forma parte de los 40 fundadores del catálogo Brotes de Chile, preservando las técnicas tradicionales que definen nuestra identidad cultural."}
               </p>
+              
+              <div className="decorative-quote-mark">“</div>
             </div>
-          )}
-        </article>
-      </div>
+
+            <footer className="profile-footer">
+              <div className="legacy-note">
+                <strong>Catálogo Digital Patrimonio Cultural</strong>
+                <span>Exposición 2026 · Santiago de Chile</span>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

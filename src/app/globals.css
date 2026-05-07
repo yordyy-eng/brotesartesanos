@@ -509,11 +509,225 @@ footer {
 
 footer strong { color: var(--gold-light); }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 680px) {
-  .memorias-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .historia-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .artesanos-grid { grid-template-columns: 1fr; }
-  .hero-divider { display: none; }
+/* ─── GLOBAL OVERLAYS ─── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ─── ARTISAN PROFILE (RSC) ─── */
+.artisan-profile-root {
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  position: relative;
+}
+
+.profile-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 40;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.back-btn:hover { color: var(--terracotta); }
+
+.nav-brand {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.5rem;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.nav-brand em {
+  font-style: italic;
+  color: var(--terracotta);
+  opacity: 0.8;
+}
+
+.profile-hero {
+  padding: 8rem 4rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hero-content-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.visual-column { position: sticky; top: 8rem; }
+
+.image-frame {
+  aspect-ratio: 4/5;
+  width: 100%;
+  position: relative;
+  background: var(--parchment);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px var(--shadow);
+}
+
+.image-overlay-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,18,10,0.1) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.placeholder-avatar {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-cormorant), serif;
+  font-size: 8rem;
+  color: var(--terracotta);
+  opacity: 0.2;
+}
+
+.craft-badge-floating {
+  position: absolute;
+  bottom: -1rem;
+  right: -2rem;
+  background: var(--terracotta);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  box-shadow: 0 12px 24px rgba(139,58,31,0.25);
+  transform: rotate(2deg);
+}
+
+.content-column { padding-top: 2rem; }
+
+.category-tag-profile {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--terracotta);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  border-bottom: 1px solid rgba(139,58,31,0.2);
+  padding-bottom: 0.25rem;
+}
+
+.artisan-name-display {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  line-height: 0.95;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.profile-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.meta-item-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--ink-mid);
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.contact-link-profile {
+  text-decoration: none;
+  color: var(--terracotta);
+  font-weight: 500;
+  transition: transform 0.3s ease;
+  width: fit-content;
+}
+
+.contact-link-profile:hover { transform: translateX(5px); }
+
+.profile-bio-section {
+  position: relative;
+  margin-bottom: 4rem;
+}
+
+.section-subtitle-profile {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.bio-text-profile {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--ink-mid);
+  font-weight: 300;
+  max-width: 500px;
+}
+
+.decorative-quote-mark {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  font-family: var(--font-cormorant), serif;
+  font-size: 12rem;
+  color: var(--terracotta);
+  opacity: 0.05;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.profile-footer {
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+  opacity: 0.6;
+}
+
+.legacy-note {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  gap: 0.25rem;
+}
+
+@media (max-width: 1024px) {
+  .profile-nav { padding: 1.5rem 2rem; }
+  .profile-hero { padding: 6rem 2rem 2rem; }
+  .hero-content-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .visual-column { position: relative; top: 0; }
+  .image-frame { aspect-ratio: 1/1; }
+  .artisan-name-display { font-size: 4rem; }
+  .craft-badge-floating { right: 0; }
 }
 

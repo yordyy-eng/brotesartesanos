@@ -7,7 +7,7 @@ Tener el catálogo funcional, conectado a la base de datos (con los 40 artesanos
 - [x] Inicializar proyecto Next.js (TypeScript, Tailwind, App Router)
 - [x] Configurar Prisma y PostgreSQL (docker-compose)
 - [x] Diseñar esquema de base de datos (Artesanos, Obras, Categorías)
-- [x] Configurar variables de entorno
+- [x] Configurar variables de entorno (.env creado)
 - [x] Extraer datos de los 40 artesanos del HTML original
 - [x] Crear script de Seed para la base de datos
 - [x] Configurar Sistema de Diseño (Colores tierra, Tipografía Serif en globals.css)
@@ -16,10 +16,17 @@ Tener el catálogo funcional, conectado a la base de datos (con los 40 artesanos
 - [x] Configurar ts-node para ejecutar scripts (migrado a `tsx`)
 - [x] Ejecutar `prisma db push` y seed — 7 categorías + 40 artesanos en BD
 - [x] Extraer assets del CATÁLOGO ARTESANOS 2026.pdf (385 imágenes + 52 páginas renderizadas + 44 links)
+- [x] Levantar entorno Docker y Postgres local
+- [x] Instalar dependencias e iniciar servidor de desarrollo (`npm run dev`)
+- [x] Identificar patrón de mapeo Imagen/Página (Artesano i -> Página i+10)
+- [x] Unificación de diseño Editorial Premium en todo el sitio.
+- [x] Eliminación de `styled-jsx` y migración total a `globals.css` (Cero errores de hidratación).
+- [x] Auditoría completa de datos de artesanos (Nombres, Oficios, Ubicaciones) vs PDF.
+- [x] Sincronización automática de retratos desde activos del PDF a perfiles individuales.
+- [x] Validación de 40 perfiles de artesanos (Páginas 10-49 del PDF).
+- [x] Build de producción exitosa y verificación visual de responsividad.
 
 ## 🟡 In Progress (En Progreso)
-- [/] Revisión visual del frontend en el navegador (http://localhost:3000)
-- [/] Asignar imágenes de artesanos a cada registro en la BD
 
 ## 🔵 To Do (Sprint Backlog - Próximos pasos)
 - [ ] Páginas de detalle individual de Artesano (SEO optimizado)

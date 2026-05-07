@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Search, MapPin, ExternalLink, ArrowRight } from 'lucide-react'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Types
@@ -28,20 +29,48 @@ interface Artisan {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Category color map
+// Category color map (Premium Earth Tones)
 // ─────────────────────────────────────────────────────────────────────────────
 const CAT_COLORS: Record<string, { bg: string; text: string; badge: string }> = {
-  orfebr:  { bg: '#FFF3E0', text: '#B8801A', badge: '#7A500A' },
-  madera:  { bg: '#F1EBE0', text: '#5D3A1A', badge: '#5D3A1A' },
-  cuero:   { bg: '#FDEBD0', text: '#8B3A1F', badge: '#6B2D14' },
-  textil:  { bg: '#E8F5E9', text: '#2D5016', badge: '#1E3D0A' },
-  greda:   { bg: '#FCE4EC', text: '#AD1457', badge: '#880E4F' },
-  mimbre:  { bg: '#E3F2FD', text: '#1565C0', badge: '#0D47A1' },
-  otros:   { bg: '#EDE7F6', text: '#4527A0', badge: '#311B92' },
+  orfebr:  { bg: '#FFF9F0', text: '#B8801A', badge: '#9A6B15' },
+  madera:  { bg: '#F8F4ED', text: '#4A3020', badge: '#4A3020' },
+  cuero:   { bg: '#FAF3F0', text: '#8B3A1F', badge: '#702E19' },
+  textil:  { bg: '#F2F6EF', text: '#2D5016', badge: '#244012' },
+  greda:   { bg: '#FDF2F5', text: '#AD1457', badge: '#8E1047' },
+  mimbre:  { bg: '#F0F7FF', text: '#1565C0', badge: '#104E96' },
+  otros:   { bg: '#F5F2FF', text: '#4527A0', badge: '#371F80' },
 }
 
 function getCatColors(id: string) {
   return CAT_COLORS[id] ?? CAT_COLORS['otros']
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Variants for Animations
+// ─────────────────────────────────────────────────────────────────────────────
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.23, 1, 0.32, 1] }
+  },
+  exit: { 
+    opacity: 0, 
+    scale: 0.95,
+    transition: { duration: 0.3 }
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -58,52 +87,192 @@ function ArtisanCard({ artisan }: { artisan: Artisan }) {
 
   return (
     <motion.div
+      variants={cardVariants}
       layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+      className="card-container"
     >
-      <Link href={`/artesano/${artisan.id}`} style={{ textDecoration: 'none' }}>
-        <article
-          className="card"
-          style={{ '--cat-bg': colors.bg, '--cat-text': colors.text, '--cat-badge': colors.badge } as React.CSSProperties}
-        >
-          <div className="card-header">
-            {artisan.image ? (
-              <div className="card-avatar" style={{ position: 'relative', overflow: 'hidden', border: `2px solid ${colors.bg}` }}>
-                <Image src={artisan.image} alt={artisan.name} fill style={{ objectFit: 'cover' }} sizes="48px" />
-              </div>
-            ) : (
-              <div className="card-avatar" style={{ background: colors.bg, color: colors.text }}>
-                {artisan.initials ?? artisan.name.slice(0, 2).toUpperCase()}
-              </div>
-            )}
-            <span className="card-category" style={{ background: colors.bg, color: colors.badge }}>
-              {artisan.category.name}
+      <Link href={`/artesano/${artisan.id}`} className="card-link-overlay" aria-label={`Ver perfil de ${artisan.name}`} />
+      
+      <article className="artisan-card-premium">
+        <div className="card-media">
+          {artisan.image ? (
+            <Image 
+              src={artisan.image} 
+              alt={artisan.name} 
+              fill 
+              style={{ objectFit: 'cover' }} 
+              sizes="(max-width: 768px) 100vw, 33vw" 
+              className="card-image"
+            />
+          ) : (
+            <div className="card-placeholder" style={{ background: colors.bg, color: colors.text }}>
+              {artisan.initials ?? artisan.name.slice(0, 2).toUpperCase()}
+            </div>
+          )}
+          <div className="card-badge" style={{ background: colors.bg, color: colors.badge }}>
+            {artisan.category.name}
+          </div>
+        </div>
+
+        <div className="card-content">
+          <h3 className="card-title">{artisan.name}</h3>
+          <p className="card-craft-label">{artisan.craft || 'Artesanía Tradicional'}</p>
+          
+          <div className="card-divider" />
+          
+          <div className="card-footer-meta">
+            <span className="card-loc">
+              <MapPin size={12} strokeWidth={2.5} />
+              {artisan.location}
             </span>
+            <div className="view-profile-cta">
+              Ver perfil <ArrowRight size={12} />
+            </div>
           </div>
-          <div className="card-name">{artisan.name}</div>
-          {artisan.craft && <div className="card-craft">{artisan.craft}</div>}
-          {artisan.bio && <p className="card-desc">{artisan.bio}</p>}
-          <div className="card-footer" onClick={(e) => {
-            // Prevent click from bubbling to the Link if clicking social
-            if ((e.target as HTMLElement).tagName === 'A') e.stopPropagation()
-          }}>
-            <span className="card-location">📍 {artisan.location}</span>
-            {artisan.instagram && contactLabel && (
-              <a
-                className="card-contact"
-                href={artisan.instagram.startsWith('http') ? artisan.instagram : `https://instagram.com/${artisan.instagram}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {contactLabel}
-              </a>
-            )}
-          </div>
-        </article>
-      </Link>
+        </div>
+      </article>
+
+      <style jsx>{`
+        .card-container {
+          position: relative;
+          height: 100%;
+        }
+
+        .card-link-overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 10;
+        }
+
+        .artisan-card-premium {
+          background: var(--white);
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid var(--border);
+          transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+          overflow: hidden;
+          position: relative;
+        }
+
+        .card-container:hover .artisan-card-premium {
+          border-color: var(--terracotta);
+          box-shadow: 0 20px 40px var(--shadow);
+          transform: translateY(-5px);
+        }
+
+        .card-media {
+          position: relative;
+          aspect-ratio: 1/1;
+          overflow: hidden;
+          background: var(--parchment);
+        }
+
+        .card-image {
+          transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card-container:hover .card-image {
+          transform: scale(1.08);
+        }
+
+        .card-placeholder {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: var(--font-cormorant), serif;
+          font-size: 3rem;
+          font-weight: 600;
+        }
+
+        .card-badge {
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          z-index: 2;
+          font-size: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          padding: 0.4rem 0.8rem;
+          font-weight: 600;
+          backdrop-filter: blur(8px);
+          background: rgba(255,255,255,0.9) !important;
+        }
+
+        .card-content {
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+
+        .card-title {
+          font-family: var(--font-cormorant), serif;
+          font-size: 1.5rem;
+          line-height: 1.1;
+          margin-bottom: 0.5rem;
+          font-weight: 600;
+          color: var(--ink);
+        }
+
+        .card-craft-label {
+          font-size: 13px;
+          color: var(--muted);
+          font-style: italic;
+          margin-bottom: 1rem;
+        }
+
+        .card-divider {
+          width: 2rem;
+          height: 1px;
+          background: var(--terracotta);
+          opacity: 0.2;
+          margin-bottom: 1rem;
+          transition: width 0.5s ease;
+        }
+
+        .card-container:hover .card-divider {
+          width: 100%;
+        }
+
+        .card-footer-meta {
+          margin-top: auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .card-loc {
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--muted);
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+        }
+
+        .view-profile-cta {
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--terracotta);
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          opacity: 0;
+          transform: translateX(-10px);
+          transition: all 0.4s ease;
+        }
+
+        .card-container:hover .view-profile-cta {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      `}</style>
     </motion.div>
   )
 }
@@ -118,7 +287,6 @@ export default function CatalogClient() {
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(true)
 
-  // Fetch categories once
   useEffect(() => {
     fetch('/api/categories')
       .then(r => r.json())
@@ -126,7 +294,6 @@ export default function CatalogClient() {
       .catch(console.error)
   }, [])
 
-  // Fetch artisans when filters change
   const fetchArtisans = useCallback(async () => {
     setLoading(true)
     const params = new URLSearchParams()
@@ -145,158 +312,123 @@ export default function CatalogClient() {
   }, [fetchArtisans])
 
   return (
-    <>
+    <div className="catalog-page-wrapper">
       <a href="#catalogo" className="skip-link">Saltar al catálogo principal</a>
 
       {/* ── HERO ── */}
-      <header className="hero">
-        <div className="hero-inner">
-          <span className="hero-tag">Muestra de Arte Popular Chileno · Angol 2026</span>
-          <h1>
+      <header className="hero-premium">
+        <div className="hero-pattern-bg" />
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+          className="hero-inner"
+        >
+          <span className="hero-tag-refined">Muestra de Arte Popular Chileno · 40ª Versión</span>
+          <h1 className="hero-title-main">
             Brotes de <em>Chile</em>
           </h1>
-          <p className="hero-sub">
+          <p className="hero-sub-premium">
             Un territorio vivo donde habitan las manos, la memoria y la identidad de un país tejido desde sus raíces.
           </p>
-          <div className="hero-meta">
-            <div className="hero-meta-item">
-              <span className="num">40</span>
-              <span className="label">Artesanas y artesanos</span>
-            </div>
-            <div className="hero-divider" />
-            <div className="hero-meta-item">
-              <span className="num">40ª</span>
-              <span className="label">Versión de la muestra</span>
-            </div>
-            <div className="hero-divider" />
-            <div className="hero-meta-item">
-              <span className="num">1984</span>
-              <span className="label">Año de origen</span>
-            </div>
+          
+          <div className="hero-stats-refined">
+            {[
+              { num: '40', label: 'Artesanos' },
+              { num: '1984', label: 'Origen' },
+              { num: 'Angol', label: 'Territorio' }
+            ].map((stat, i) => (
+              <div key={stat.label} className="stat-group">
+                <span className="stat-num">{stat.num}</span>
+                <span className="stat-label">{stat.label}</span>
+              </div>
+            ))}
           </div>
+        </motion.div>
+        <div className="scroll-indicator-premium">
+          <div className="mouse-wheel" />
         </div>
-        <div className="hero-scroll">Explorar</div>
       </header>
 
       {/* ── MEMORIAS ── */}
-      <section className="memorias">
+      <section className="section-editorial memorias-section">
         <div className="container">
-          <p className="section-tag">Historia</p>
-          <h2>Memorias de la muestra</h2>
-          <div className="memorias-grid">
-            <p className="memorias-quote">
-              &ldquo;Lo que aquí se exhibe no son solo objetos — son Brotes de memoria, identidad, resistencia y de futuro.&rdquo;
-            </p>
-            <div className="memorias-text">
-              <p>
-                Desde su origen en 1984, junto al nacimiento del Festival Brotes de Chile en la ciudad de Angol, la Muestra de Arte Popular ha sido mucho más que un espacio expositivo: un territorio vivo donde habitan las manos, la memoria y la identidad de un país tejido desde sus raíces.
-              </p>
-              <p>
-                En su versión número 40 — un umbral — la muestra vuelve a posicionarse como un espacio de sentido: caminarlo es encontrarse con miradas que saben, manos que narran sin palabras, materiales que conservan el pulso de la tierra.
-              </p>
-              <p>
-                Hoy el asombro regresa. La cantidad cede ante la calidad; la inmediatez, ante el tiempo paciente de la creación. Porque al final, la artesanía no sobrevive por inercia, sino por cuidado.
-              </p>
+          <div className="editorial-grid">
+            <div className="editorial-header">
+              <span className="editorial-tag">Legado Cultural</span>
+              <h2 className="editorial-title">Memorias de la muestra</h2>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── HISTORIA AGRUPACIÓN ── */}
-      <section className="historia">
-        <div className="container">
-          <p className="section-tag" style={{ color: 'var(--gold-light)' }}>Sobre nosotros</p>
-          <div className="historia-grid">
-            <div className="historia-aside">
-              {[
-                { num: '2021', desc: 'Año de fundación' },
-                { num: '15+', desc: 'Artesanas y productores fundadores' },
-                { num: '2026', desc: 'Fondart Nacional adjudicado' },
-                { num: '80+', desc: 'Creadores en la Expo Destino' },
-              ].map(({ num, desc }) => (
-                <div key={desc} className="historia-stat">
-                  <div className="num">{num}</div>
-                  <div className="desc">{desc}</div>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h2>Agrupación Huellas de Nahuelbuta</h2>
-              <p>
-                Nace en el otoño de 2021, en el contexto post pandemia, cuando artesanas y productores del territorio reflexionaron sobre la necesidad de generar mejores espacios para exhibir y comercializar su trabajo, fortaleciendo la representación del oficio artesanal local.
+            <div className="editorial-content">
+              <p className="large-lead">
+                Desde su origen en 1984, la Muestra de Arte Popular ha sido un territorio vivo donde habitan las manos y la memoria de Chile.
               </p>
-              <p>
-                En enero de 2022 se conformó oficialmente, con 15 integrantes de diversos oficios: artesanía en lana, tejidos tradicionales, macramé, vitrofusión, madera, talabartería y orfebrería, entre otros.
-              </p>
-              <p>
-                Hoy mantiene un calendario anual de actividades y se proyecta como una organización sólida, profundamente vinculada con el territorio, comprometida con la difusión del arte, la artesanía, la cultura y la producción local.
-              </p>
-              <p style={{ marginTop: '1.5rem', fontSize: '13px' }}>
-                Productora General: <strong style={{ color: 'var(--gold-light)' }}>Mariana Rojas Román</strong>{' '}
-                · Productora Ejecutiva: <strong style={{ color: 'var(--gold-light)' }}>María Elisa Robles Rivas</strong>
-              </p>
+              <div className="columns-text">
+                <p>
+                  En su versión número 40, la muestra vuelve a posicionarse como un espacio de sentido: caminarlo es encontrarse con miradas que saben, manos que narran sin palabras, materiales que conservan el pulso de la tierra.
+                </p>
+                <p>
+                  Hoy el asombro regresa. La cantidad cede ante la calidad; la inmediatez, ante el tiempo paciente de la creación. Porque la artesanía no sobrevive por inercia, sino por cuidado.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── CATÁLOGO ── */}
-      <section className="catalogo" id="catalogo">
+      <section className="catalog-section" id="catalogo">
         <div className="container">
-          <p className="section-tag">Catálogo 2026</p>
-          <h2>Artesanas y Artesanos</h2>
-
-          <div className="catalogo-controls">
-            <div className="search-wrap">
-              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              <input
-                id="search"
-                type="text"
-                placeholder="Buscar por nombre, oficio o ciudad…"
-                aria-label="Buscar artesanos por nombre, oficio o ciudad"
-                value={searchQuery}
-                onChange={e => setSearchQuery(e.target.value)}
-              />
+          <header className="catalog-header">
+            <div className="header-text">
+              <span className="editorial-tag">El Archivo</span>
+              <h2 className="editorial-title">Catálogo de Expositores</h2>
             </div>
-            <div className="filters" id="filters">
-              <button
-                id="filter-todos"
-                className={`filter-btn${activeCategory === 'todos' ? ' active' : ''}`}
-                onClick={() => setActiveCategory('todos')}
-              >
-                Todos
-              </button>
-              {categories.map(cat => (
+            
+            <div className="catalog-filters-bar">
+              <div className="search-refined">
+                <Search size={18} className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Buscar por nombre, oficio o ciudad…"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <div className="category-scroll-area">
                 <button
-                  key={cat.id}
-                  id={`filter-${cat.id}`}
-                  className={`filter-btn${activeCategory === cat.id ? ' active' : ''}`}
-                  onClick={() => setActiveCategory(cat.id)}
+                  className={`filter-chip${activeCategory === 'todos' ? ' active' : ''}`}
+                  onClick={() => setActiveCategory('todos')}
                 >
-                  {cat.name}
+                  Todos
                 </button>
-              ))}
+                {categories.map(cat => (
+                  <button
+                    key={cat.id}
+                    className={`filter-chip${activeCategory === cat.id ? ' active' : ''}`}
+                    onClick={() => setActiveCategory(cat.id)}
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
             </div>
+          </header>
+
+          <div className="results-count">
+            {loading ? 'Sincronizando archivo...' : `Encontrados ${artisans.length} registros`}
           </div>
 
-          <p className="catalogo-count" id="count">
-            {loading ? 'Buscando…' : `Mostrando ${artisans.length} ${activeCategory === 'todos' ? 'artesanas y artesanos' : 'resultados'}`}
-          </p>
-
-          <motion.div layout className="artesanos-grid" id="grid">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            layout
+            className="artisan-grid-premium"
+          >
             <AnimatePresence mode="popLayout">
               {loading
-                ? Array.from({ length: 8 }).map((_, i) => (
-                    <motion.div
-                      key={`skeleton-${i}`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="card skeleton"
-                      aria-busy="true"
-                    />
+                ? Array.from({ length: 6 }).map((_, i) => (
+                    <div key={`skel-${i}`} className="card-skeleton-premium" />
                   ))
                 : artisans.map(a => <ArtisanCard key={a.id} artisan={a} />)
               }
@@ -305,41 +437,239 @@ export default function CatalogClient() {
         </div>
       </section>
 
-      {/* ── AGRADECIMIENTOS ── */}
-      <section className="gracias">
-        <div className="container">
-          <p className="section-tag">Reconocimientos</p>
-          <h2>Agradecimientos del proyecto</h2>
-          <p style={{ color: 'var(--ink-mid)', maxWidth: '600px', fontWeight: 300 }}>
-            Este catálogo fue posible gracias al trabajo colaborativo de muchas personas y organizaciones comprometidas con el arte popular chileno.
-          </p>
-          <div className="gracias-grid">
-            {[
-              { title: 'Financiamiento', body: 'Fondart Nacional 2026 · Ministerio de las Culturas, las Artes y el Patrimonio' },
-              { title: 'Municipalidad de Angol', body: 'Parte fundamental en la realización de la 40ª Muestra de Arte Popular Chileno' },
-              { title: 'Comité organizador', body: 'José Luis Bustamante Oporto y Francisco Gómez Vera por su gestión y apoyo logístico' },
-              { title: 'Diseño editorial', body: 'Constanza Parada · @coniivone' },
-              { title: 'Fotografía editorial', body: 'Bárbara Aguilar · @_pame_cr2 · Ignacio Hormazábal · @owl.produkciones' },
-              { title: 'Cobertura del evento', body: 'Claudio Andrades · @claudiovisual_' },
-            ].map(({ title, body }) => (
-              <div key={title} className="gracias-item">
-                <h4>{title}</h4>
-                <p>{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <style jsx>{`
+        .catalog-page-wrapper {
+          background: var(--cream);
+          position: relative;
+        }
 
-      {/* ── FOOTER ── */}
-      <footer>
-        <p><strong>Catálogo Artesanos · Muestra de Arte Popular Chileno Brotes de Chile 2026</strong></p>
-        <p style={{ marginTop: '0.5rem' }}>Agrupación Huellas de Nahuelbuta · Angol, Región de La Araucanía</p>
-        <p style={{ marginTop: '0.5rem' }}>
-          Productora General: <strong>Mariana Rojas Román</strong>{' '}
-          · Productora Ejecutiva: <strong>María Elisa Robles Rivas</strong>
-        </p>
-      </footer>
-    </>
+        .catalog-page-wrapper::before {
+          content: "";
+          position: fixed;
+          inset: 0;
+          background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+          opacity: 0.03;
+          pointer-events: none;
+          z-index: 100;
+        }
+
+        /* Hero Refined */
+        .hero-premium {
+          min-height: 100vh;
+          background: var(--ink);
+          color: var(--cream);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          text-align: center;
+          padding: 4rem 2rem;
+          overflow: hidden;
+        }
+
+        .hero-pattern-bg {
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+          background-size: 32px 32px;
+          mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+
+        .hero-inner { position: relative; z-index: 2; max-width: 900px; }
+
+        .hero-tag-refined {
+          display: inline-block;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.3em;
+          color: var(--gold-light);
+          margin-bottom: 2rem;
+          font-weight: 500;
+        }
+
+        .hero-title-main {
+          font-family: var(--font-cormorant), serif;
+          font-size: clamp(4rem, 10vw, 8rem);
+          line-height: 0.9;
+          font-weight: 600;
+          margin-bottom: 2rem;
+          letter-spacing: -0.03em;
+        }
+
+        .hero-title-main em { font-style: italic; color: var(--gold-light); }
+
+        .hero-sub-premium {
+          font-size: clamp(1.1rem, 2vw, 1.4rem);
+          color: rgba(250,246,238,0.6);
+          max-width: 600px;
+          margin: 0 auto 4rem;
+          font-weight: 300;
+          line-height: 1.6;
+        }
+
+        .hero-stats-refined {
+          display: flex;
+          justify-content: center;
+          gap: 4rem;
+          border-top: 1px solid rgba(255,255,255,0.1);
+          padding-top: 3rem;
+        }
+
+        .stat-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .stat-num { font-family: var(--font-cormorant), serif; font-size: 3rem; color: var(--gold-light); line-height: 1; }
+        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.5; }
+
+        .scroll-indicator-premium {
+          position: absolute;
+          bottom: 3rem;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .mouse-wheel {
+          width: 1px;
+          height: 60px;
+          background: linear-gradient(to bottom, var(--gold-light), transparent);
+          position: relative;
+        }
+
+        /* Editorial Section */
+        .section-editorial { padding: 10rem 2rem; }
+        .editorial-grid {
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 4rem;
+          align-items: start;
+        }
+
+        .editorial-tag {
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          color: var(--terracotta);
+          margin-bottom: 1rem;
+          display: block;
+          font-weight: 600;
+        }
+
+        .editorial-title {
+          font-family: var(--font-cormorant), serif;
+          font-size: clamp(2.5rem, 5vw, 4rem);
+          line-height: 1.1;
+          color: var(--ink);
+        }
+
+        .large-lead {
+          font-family: var(--font-cormorant), serif;
+          font-size: 2.2rem;
+          line-height: 1.3;
+          margin-bottom: 3rem;
+          color: var(--terracotta);
+          font-style: italic;
+        }
+
+        .columns-text {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          font-size: 1.1rem;
+          color: var(--ink-mid);
+          font-weight: 300;
+          line-height: 1.8;
+        }
+
+        /* Catalog Section */
+        .catalog-section { padding: 4rem 2rem 10rem; }
+        .catalog-header {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem;
+          margin-bottom: 4rem;
+        }
+
+        .catalog-filters-bar {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          background: var(--white);
+          padding: 1rem;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+        }
+
+        .search-refined {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+
+        .search-icon { position: absolute; left: 1.5rem; color: var(--terracotta); }
+
+        .search-refined input {
+          width: 100%;
+          padding: 1.25rem 1.5rem 1.25rem 4rem;
+          border: none;
+          background: var(--parchment);
+          font-size: 1rem;
+          color: var(--ink);
+          border-radius: 4px;
+          outline: none;
+        }
+
+        .category-scroll-area {
+          display: flex;
+          gap: 0.75rem;
+          overflow-x: auto;
+          padding-bottom: 0.5rem;
+          scrollbar-width: none;
+        }
+
+        .filter-chip {
+          white-space: nowrap;
+          padding: 0.6rem 1.25rem;
+          border-radius: 4px;
+          border: 1px solid var(--border);
+          background: var(--white);
+          font-size: 13px;
+          font-weight: 500;
+          color: var(--muted);
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .filter-chip:hover { border-color: var(--terracotta); color: var(--terracotta); }
+        .filter-chip.active { background: var(--terracotta); border-color: var(--terracotta); color: var(--white); }
+
+        .results-count { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2rem; }
+
+        .artisan-grid-premium {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 2rem;
+        }
+
+        .card-skeleton-premium {
+          aspect-ratio: 3/4;
+          background: var(--parchment);
+          border-radius: 4px;
+          animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 0.8; }
+        }
+
+        @media (max-width: 1024px) {
+          .editorial-grid { grid-template-columns: 1fr; }
+          .columns-text { grid-template-columns: 1fr; }
+          .hero-stats-refined { gap: 2rem; }
+        }
+      `}</style>
+    </div>
   )
 }

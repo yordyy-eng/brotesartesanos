@@ -1,0 +1,8 @@
+[
+  { "page": 10, "name": "Juan Carlos Lizana", "craft": "Joyas de Plata", "location": "La Pintana" },
+  { "page": 11, "name": "Claudina Torres", "craft": "Accesorios en Cuero", "location": "Catemu" },
+  { "page": 12, "name": "Roberto Vergara", "craft": "Calado en Madera", "location": "Hualpén" },
+  { "page": 13, "name": "Cristóbal Morales", "craft": "Marroquinería", "location": "Cañete" },
+  { "page": 14, "name": "Ana María Castro", "craft": "Artesanía en Greda", "location": "Antuco" },
+  { "page": 15, "name": "Mauricio Borgoño", "craft": "Artesanía en Madera", "location": "Chillán" }
+]
