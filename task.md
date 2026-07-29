@@ -14,7 +14,6 @@ Tener el catálogo funcional, conectado a la base de datos (con los 40 artesanos
 - [x] Implementar componente cliente del Catálogo (Filtros, Búsqueda, Grid)
 - [x] Implementar API Routes para Artesanos y Categorías
 - [x] Configurar ts-node para ejecutar scripts (migrado a `tsx`)
-- [x] Ejecutar `prisma db push` y seed — 7 categorías + 40 artesanos en BD
 - [x] Extraer assets del CATÁLOGO ARTESANOS 2026.pdf (385 imágenes + 52 páginas renderizadas + 44 links)
 - [x] Levantar entorno Docker y Postgres local
 - [x] Instalar dependencias e iniciar servidor de desarrollo (`npm run dev`)
@@ -25,14 +24,20 @@ Tener el catálogo funcional, conectado a la base de datos (con los 40 artesanos
 - [x] Sincronización automática de retratos desde activos del PDF a perfiles individuales.
 - [x] Validación de 40 perfiles de artesanos (Páginas 10-49 del PDF).
 - [x] Build de producción exitosa y verificación visual de responsividad.
+- [x] Páginas de detalle individual de Artesano con SEO/OpenGraph dinámico (`/artesano/[id]`).
+- [x] Animaciones de entrada con Framer Motion en el Grid (stagger + variants).
+- [x] Validación de datos con Zod en `/api/artisans` (`src/lib/validations.ts`).
+- [x] Recuperar y recortar manualmente los retratos de los 2 artesanos sin imagen fuente en `pdf-assets` (Juan Carlos Lizana p10, María Robles p49), usando el render de página completa.
+- [x] Extraer el texto real del PDF con `pdftotext` y las anotaciones de enlace con `pypdf` para obtener el contacto (Instagram/teléfono/email) verdadero de cada uno de los 40 artesanos — cargado en el campo `instagram` del seed.
+- [x] Restaurar categorías reales (7 categorías: Orfebrería y Joyería, Trabajo en Madera, Cuero y Marroquinería, Textil y Tejidos, Greda y Cerámica, Mimbre, Otros Oficios) — antes el seed solo creaba una categoría `"general"` y el color-coding por oficio en `catalog-client.tsx` no funcionaba.
+- [x] Scrapear huellasdenahuelbuta.cl (historia, misión/visión, listado de artesanos/productores) para complementar el contexto institucional.
 
 ## 🟡 In Progress (En Progreso)
 
 ## 🔵 To Do (Sprint Backlog - Próximos pasos)
-- [ ] Páginas de detalle individual de Artesano (SEO optimizado)
-- [ ] Animaciones de entrada con Framer Motion en el Grid
-- [ ] Optimizar y asociar imágenes del PDF a artesanos en `public/artesanos/`
-- [ ] Configurar validación de datos con Zod
+- [ ] Decidir si se reemplazan las bios cortas y genéricas del seed por las bios reales y extensas escritas para el catálogo (ya transcritas desde el PDF, ver nota abajo) — es contenido de mucha mejor calidad pero son ~40 párrafos largos.
+- [ ] Conseguir contacto para los 2 artesanos sin Instagram/teléfono impreso en su página: Víctor Gutiérrez (p23) y Pedro Navarrete (p47, solo aparece el nombre del emprendimiento "Materia doña pepita").
+- [ ] Evaluar si se agrega una sección "Nuestra Historia" / "Sobre la Agrupación" al sitio con el contenido institucional de Huellas de Nahuelbuta (ver más abajo).
 
 ## 🟣 Backlog (Portfolio Senior & DevOps)
 - [ ] Configurar GitHub Actions (CI/CD)
@@ -40,7 +45,21 @@ Tener el catálogo funcional, conectado a la base de datos (con los 40 artesanos
 - [ ] Agregar documentación de API (Swagger/Scalar)
 - [ ] Implementar Logging (Pino/Winston)
 - [ ] SEO audit (Lighthouse > 90)
-- [ ] Despliegue final a producción (Deadline: 12 Mayo)
+- [ ] Despliegue final a producción — el deadline original de este backlog decía "12 Mayo" (2026), que ya pasó a la fecha de hoy (29 jul 2026). Confirmar con el usuario si esto se cumplió o si hay que fijar una fecha nueva.
+
+---
+
+## ⚠️ Nota importante: los enlaces del PDF (tabla original de abajo) NO son confiables
+
+La tabla "Links extraídos (44 total)" de más abajo viene de las anotaciones de hipervínculo embebidas en el PDF (extraídas automáticamente). Al cruzarla con el texto impreso real de cada página, se confirmó que **no corresponde al Instagram de cada artesano** — es un botón/plantilla reutilizada en el diseño que quedó apuntando al mismo enlace en varias páginas (ej. `elmundodemussa` aparece en 9 páginas de artesanos distintos; `grabadoslinares` en 5). El Instagram/teléfono real de cada persona es el que aparece impreso como texto vertical en su propia página, y así es como se cargó en `prisma/seed.ts` (ver artesanos arriba).
+
+## 🏛️ Contexto institucional (de huellasdenahuelbuta.cl y del PDF)
+
+- **Organización:** Agrupación ASAC Huellas de Nahuelbuta — nace en el otoño de 2021 (post-pandemia), se formaliza en enero de 2022 con 15 artesanos/productores fundadores. Colabora con la Municipalidad de Angol.
+- **Hitos:** feria inaugural feb-2022 · primera Expo Destino (~80 participantes) dic-2022 · proyecto FNDR 2024 (carpas 6x12m) · proyecto FONDES + Jardín Identitario 2025 · Fondart Nacional 2026 para la **40ª Muestra de Arte Popular Chileno "Brotes de Chile"** (el festival en sí existe desde 1984).
+- **Roles clave del catálogo 2026:** Mariana Rojas Román (@sietecolorescreaciones, también artesana #37) = Productora General. María Elisa Robles Rivas (@rustica_telares_nahuelbuta, también artesana #40 "María Robles") = Productora Ejecutiva.
+- **Contacto agrupación:** agrupacion.huellasdenahuelbuta@gmail.com · IG/FB @agrupacion_huellasdenahuelbuta.
+- El sitio web tiene además una sección `/artesanos/` con **otros** productores locales (papelería, sal gourmet, apicultura, viveros, gastronomía, macramé, etc.) que **no** son parte de los 40 del catálogo PDF "Brotes de Chile 2026" — son parte de la agrupación más amplia. No se han incorporado a la BD; evaluar si tiene sentido como sección aparte.
 
 ---
 
@@ -64,7 +83,7 @@ Tener el catálogo funcional, conectado a la base de datos (con los 40 artesanos
 | `public/pdf-assets/images/` | Imágenes embebidas extraídas (`pXX_imgYY.jpg/png`) | 385 |
 | `public/pdf-assets/index.json` | Índice completo: links e imágenes por página | 1 |
 
-### Links extraídos (44 total)
+### Links extraídos (44 total) — ⚠️ ver nota de confiabilidad arriba, no usar para poblar contactos
 Todos son Instagram de artesanos. Los correctos son:
 
 | Instagram URL | Página PDF |
@@ -99,3 +118,5 @@ Las imágenes están nombradas por página (`p09_img01.jpg`, etc.). Para usarlas
 1. Abrir `public/pdf-assets/pages/page_09.jpg` → `page_49.jpg` para identificar manualmente qué artesano es cada doble página
 2. Copiar la foto principal de cada artesano a `public/artesanos/<slug>.jpg`
 3. Actualizar el seed o crear una migración para guardar el campo `image` en la BD
+
+**Estado:** completo para 38/40 artesanos vía copia automática desde `pdf-assets/images/`. Los 2 restantes (Juan Carlos Lizana, María Robles) no tenían imagen embebida extraída — se recortaron manualmente desde `pdf-assets/pages/page_10.jpg` y `page_49.jpg` con `sharp` y ya están en `public/artesanos/`.
