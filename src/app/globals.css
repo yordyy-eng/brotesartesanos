@@ -1,20 +1,23 @@
 @import "tailwindcss";
 
 :root {
+  /* Paleta alineada a la identidad real de huellasdenahuelbuta.cl:
+     verde bosque oscuro + naranja quemado + crudo, en vez del
+     genérico "oscuro + dorado" con el que arrancó este sistema. */
   --cream: #FAF6EE;
-  --parchment: #F2EBD9;
+  --parchment: #F0EAD8;
   --terracotta: #8B3A1F;
   --terracotta-light: #C4581A;
-  --forest: #2D5016;
-  --forest-light: #4A7A25;
-  --gold: #B8801A;
-  --gold-light: #E8A83A;
-  --ink: #1E120A;
-  --ink-mid: #4A3020;
-  --muted: #7A6050;
+  --forest: #16261C;
+  --forest-light: #2F4A34;
+  --gold: #A8471C;
+  --gold-light: #E07B3D;
+  --ink: #16261C;
+  --ink-mid: #38352A;
+  --muted: #6E6656;
   --border: #D4C4A8;
   --white: #FFFFFF;
-  --shadow: rgba(30,18,10,0.12);
+  --shadow: rgba(16,26,20,0.16);
   --card-radius: 12px;
 }
 
@@ -76,12 +79,29 @@ body {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(ellipse 70% 50% at 20% 80%, rgba(139,58,31,0.35) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(45,80,22,0.3) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 50% at 20% 85%, rgba(139,58,31,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 15%, rgba(47,74,52,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 55% at 50% 45%, rgba(22,38,28,0.82) 0%, rgba(22,38,28,0.55) 55%, rgba(22,38,28,0.7) 100%);
 }
 
-.hero-inner { position: relative; z-index: 1; max-width: 800px; }
+.hero-photo-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-auto-rows: 110px;
+  overflow: hidden;
+}
+
+.hero-photo-tile {
+  position: relative;
+  filter: grayscale(0.35) sepia(0.15) saturate(1.3) contrast(1.05) brightness(0.95);
+}
+
+.hero-inner { position: relative; z-index: 2; max-width: 800px; }
 
 .hero-tag {
   display: inline-block;
@@ -498,6 +518,144 @@ h2 {
 
 .gracias-item p { font-size: 13px; color: var(--ink-mid); font-weight: 300; }
 
+/* ─── HISTORIA TIMELINE (página /historia) ─── */
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+.timeline-entry {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 2rem;
+  border-top: 1px solid rgba(250,246,238,0.12);
+  padding-top: 2rem;
+}
+.timeline-date {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.4rem;
+  color: var(--gold-light);
+}
+.timeline-body h3 {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.timeline-quote {
+  margin-top: 2rem;
+  padding: 2rem;
+  border-left: 3px solid var(--gold);
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--gold-light);
+  line-height: 1.5;
+}
+@media (max-width: 700px) {
+  .timeline-entry { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+
+/* ─── MISIÓN/VISIÓN (página /sobre-nosotros) ─── */
+.mision-vision-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+.mision-vision-text {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink-mid);
+  font-weight: 300;
+}
+@media (max-width: 800px) {
+  .mision-vision-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ─── PORTADA AGRUPACIÓN (página /) ─── */
+.home-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.home-card {
+  display: block;
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.home-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px var(--shadow);
+  border-color: var(--terracotta);
+}
+.home-card-image {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: var(--parchment);
+}
+.home-card-body { padding: 1.5rem 1.5rem 1.75rem; }
+.home-card h3 {
+  font-family: var(--font-cormorant), serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.home-card p {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  font-weight: 300;
+  line-height: 1.6;
+}
+.home-card-cta {
+  display: inline-flex;
+  margin-top: 1.25rem;
+  color: var(--terracotta);
+}
+
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.6rem;
+  margin-top: 2.5rem;
+}
+.photo-gallery-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--parchment);
+  transition: transform 0.3s ease;
+}
+.photo-gallery-tile:hover { transform: scale(1.03); }
+
+/* ─── CONTACTO (página /contacto) ─── */
+.contact-card { max-width: 600px; }
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--ink-mid);
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+.contact-row svg { color: var(--terracotta); flex-shrink: 0; }
+a.contact-row:hover { color: var(--terracotta); }
+
 /* ─── FOOTER ─── */
 footer {
   background: var(--ink);
@@ -507,13 +665,45 @@ footer {
   font-size: 12px;
 }
 
-footer strong { color: var(--gold-light); }
+footer .footer-logo { display: block; margin: 0 auto 1rem; object-fit: contain; }
+footer strong { color: var(--gold-light); display: block; margin-bottom: 0.5rem; font-size: 14px; }
+footer p { margin-bottom: 0.35rem; }
+footer p:last-child { margin-bottom: 0; }
+footer a { color: rgba(250,246,238,0.7); text-decoration: underline; text-underline-offset: 2px; }
+footer a:hover { color: var(--gold-light); }
+footer .footer-credit { margin-top: 1.5rem; opacity: 0.55; font-size: 11px; }
+footer .footer-credit a { color: inherit; }
+
+/* ─── LOADING SCREEN (WebGL logo reveal) ─── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.loading-screen.fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-screen-canvas,
+.loading-screen-logo {
+  width: min(280px, 45vw);
+  height: min(280px, 45vw);
+  object-fit: contain;
+}
 
 /* ─── GLOBAL OVERLAYS ─── */
 .noise-overlay {
   position: fixed;
   inset: 0;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  background-image: url("/noise.svg");
   opacity: 0.04;
   pointer-events: none;
   z-index: 999;

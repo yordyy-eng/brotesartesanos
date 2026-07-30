@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "catalogo": "Brotes de Chile",
+    "historia": "Historia",
+    "sobreNosotros": "Sobre Nosotros",
+    "contacto": "Contacto"
+  },
+  "catalog": {
+    "skipLink": "Saltar al catálogo principal",
+    "searchPlaceholder": "Buscar por nombre, oficio o comuna...",
+    "categoryAll": "Todos",
+    "viewProfile": "Ver perfil",
+    "resultsCount": "Encontrados {count} registros",
+    "noResults": "No se encontraron artesanos con esos criterios."
+  },
+  "profile": {
+    "notFound": "Artesano no encontrado",
+    "backToCatalog": "Volver al Catálogo",
+    "craftAndLegacy": "El Oficio y el Legado",
+    "defaultBio": "Este artesano/a forma parte de los 40 fundadores del catálogo Brotes de Chile, preservando las técnicas tradicionales que definen nuestra identidad cultural.",
+    "legacyNote": "Catálogo Digital Patrimonio Cultural",
+    "legacyLocation": "Exposición 2026 · Santiago de Chile"
+  },
+  "sobreNosotros": {
+    "mision": "Misión",
+    "vision": "Visión",
+    "valoresTag": "Nuestros Valores",
+    "valoresTitle": "Lo que nos define"
+  },
+  "footer": {
+    "orgName": "Agrupación ASAC Huellas de Nahuelbuta"
+  }
+}

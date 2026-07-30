@@ -2,38 +2,40 @@
   "name": "brotes-feria",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "tsx prisma/seed.ts",
-    "db:migrate": "prisma migrate dev",
-    "db:generate": "prisma generate"
+    "seed:content": "tsx scripts/seed-content.ts"
   },
   "dependencies": {
-    "@prisma/client": "^6.7.0",
+    "@payloadcms/db-postgres": "^3.86.0",
+    "@payloadcms/next": "^3.86.0",
+    "@payloadcms/plugin-seo": "^3.86.0",
+    "@payloadcms/richtext-lexical": "^3.86.0",
     "framer-motion": "^12.38.0",
+    "graphql": "^16.14.2",
     "lucide-react": "^1.14.0",
-    "next": "16.2.5",
+    "next": "^16.2.12",
+    "next-intl": "^4.13.4",
+    "payload": "^3.86.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "zod": "^4.4.3"
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
-    "eslint-config-next": "16.2.5",
-    "prisma": "^6.7.0",
+    "eslint-config-next": "^16.2.12",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   }
 }

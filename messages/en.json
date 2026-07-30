@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "catalogo": "Brotes de Chile",
+    "historia": "History",
+    "sobreNosotros": "About Us",
+    "contacto": "Contact"
+  },
+  "catalog": {
+    "skipLink": "Skip to main catalog",
+    "searchPlaceholder": "Search by name, craft, or town...",
+    "categoryAll": "All",
+    "viewProfile": "View profile",
+    "resultsCount": "{count} artisans found",
+    "noResults": "No artisans matched your search."
+  },
+  "profile": {
+    "notFound": "Artisan not found",
+    "backToCatalog": "Back to Catalog",
+    "craftAndLegacy": "The Craft and the Legacy",
+    "defaultBio": "This artisan is one of the 40 founders of the Brotes de Chile catalog, preserving the traditional techniques that define our cultural identity.",
+    "legacyNote": "Digital Cultural Heritage Catalog",
+    "legacyLocation": "2026 Exhibition · Santiago, Chile"
+  },
+  "sobreNosotros": {
+    "mision": "Mission",
+    "vision": "Vision",
+    "valoresTag": "Our Values",
+    "valoresTitle": "What defines us"
+  },
+  "footer": {
+    "orgName": "Agrupación ASAC Huellas de Nahuelbuta"
+  }
+}
