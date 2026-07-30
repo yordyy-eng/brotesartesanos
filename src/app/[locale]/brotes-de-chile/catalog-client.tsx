@@ -137,12 +137,12 @@ function ArtisanCard({ artisan }: { artisan: Artisan }) {
       </article>
 
       <style jsx>{`
-        .card-container {
+        :global(.card-container) {
           position: relative;
           height: 100%;
         }
 
-        .card-link-overlay {
+        :global(.card-link-overlay) {
           position: absolute;
           inset: 0;
           z-index: 10;
@@ -159,7 +159,7 @@ function ArtisanCard({ artisan }: { artisan: Artisan }) {
           position: relative;
         }
 
-        .card-container:hover .artisan-card-premium {
+        :global(.card-container):hover .artisan-card-premium {
           border-color: var(--terracotta);
           box-shadow: 0 20px 40px var(--shadow);
           transform: translateY(-5px);
@@ -176,7 +176,7 @@ function ArtisanCard({ artisan }: { artisan: Artisan }) {
           transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .card-container:hover .card-image {
+        :global(.card-container):hover .card-image {
           transform: scale(1.08);
         }
 
@@ -237,7 +237,7 @@ function ArtisanCard({ artisan }: { artisan: Artisan }) {
           transition: width 0.5s ease;
         }
 
-        .card-container:hover .card-divider {
+        :global(.card-container):hover .card-divider {
           width: 100%;
         }
 
@@ -272,7 +272,7 @@ function ArtisanCard({ artisan }: { artisan: Artisan }) {
           transition: all 0.4s ease;
         }
 
-        .card-container:hover .view-profile-cta {
+        :global(.card-container):hover .view-profile-cta {
           opacity: 1;
           transform: translateX(0);
         }
@@ -460,7 +460,7 @@ export default function CatalogClient({ initialArtisans, initialCategories, hero
           background-size: 32px 32px, cover;
         }
 
-        .hero-inner { position: relative; z-index: 2; max-width: 900px; }
+        :global(.hero-inner) { position: relative; z-index: 2; max-width: 900px; }
 
         .hero-tag-refined {
           display: inline-block;
@@ -631,7 +631,7 @@ export default function CatalogClient({ initialArtisans, initialCategories, hero
 
         .results-count { font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2rem; }
 
-        .artisan-grid-premium {
+        :global(.artisan-grid-premium) {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
           gap: 2rem;
