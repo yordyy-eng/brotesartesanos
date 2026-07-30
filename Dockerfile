@@ -24,12 +24,16 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
-# sharp offloads each resize to libuv's threadpool; the default size (4) means
-# only 4 image resizes run truly in parallel. With ~150 unique photos per hero
-# mosaic all requested at once on page load, everything past the first 4
-# queues up and tail latency balloons to several seconds (measured: median
-# 2.6s, max ~12s under concurrent load, vs 75-360ms for a single request).
+# ~150 unique photos per hero mosaic all get requested at once on page load,
+# each triggering a live sharp resize. Raising UV_THREADPOOL_SIZE alone did
+# NOT help (measured, see docs/DEPLOY.md) because sharp/libvips defaults to
+# using ALL CPU cores for EACH individual resize — with many concurrent
+# resizes on a 4-core box, they thrash fighting over the same cores instead
+# of running in parallel. Capping each resize to a single core lets many
+# resizes actually overlap instead of contending; UV_THREADPOOL_SIZE=16 gives
+# enough queue slots for that overlap to happen.
 ENV UV_THREADPOOL_SIZE=16
+ENV VIPS_CONCURRENCY=1
 
 RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 
