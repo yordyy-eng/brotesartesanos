@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import Image from 'next/image'
-import { ArrowLeft, MapPin, Camera, Mail, Phone, ExternalLink } from 'lucide-react'
+import { ArrowLeft, MapPin, Camera, Mail, MessageCircle, ExternalLink } from 'lucide-react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getPayloadClient } from '@/lib/payload'
 import { richTextToPlainText } from '@/lib/richtext'
@@ -57,6 +57,7 @@ export default async function ArtisanProfile({ params }: { params: Promise<PageP
   const isInstagram = contactLink?.includes('instagram.com')
   const isEmail = contactLink?.includes('@')
   const isPhone = contactLink?.startsWith('+') || contactLink?.match(/^\d+$/)
+  const whatsappHref = isPhone ? `https://wa.me/${contactLink!.replace(/\D/g, '')}` : null
 
   return (
     <main className="artisan-profile-root">
@@ -119,14 +120,14 @@ export default async function ArtisanProfile({ params }: { params: Promise<PageP
 
                 {contactLink && (
                   <a
-                    href={isEmail ? `mailto:${contactLink}` : isPhone ? `tel:${contactLink}` : contactLink}
+                    href={isEmail ? `mailto:${contactLink}` : whatsappHref ?? contactLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="meta-item-profile contact-link-profile"
                   >
                     {isInstagram ? <Camera size={16} /> :
                      isEmail ? <Mail size={16} /> :
-                     <Phone size={16} />}
+                     <MessageCircle size={16} />}
                     <span>{isInstagram ? '@' + contactLink.split('instagram.com/')[1].replace('/', '') : contactLink}</span>
                     <ExternalLink size={12} className="opacity-40" />
                   </a>
