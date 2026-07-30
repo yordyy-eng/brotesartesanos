@@ -1,6 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
+import { Menu, X } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Link, usePathname, useRouter } from '@/i18n/navigation'
 
@@ -10,14 +12,17 @@ const LOCALES = [
 ]
 
 export default function SiteHeader() {
+  const [menuOpen, setMenuOpen] = useState(false)
   const t = useTranslations('nav')
   const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
 
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <header className="site-header">
-      <Link href="/" className="site-header-brand">
+      <Link href="/" className="site-header-brand" onClick={closeMenu}>
         <Image src="/logo-huellas-emblem.png" alt="" width={48} height={48} className="site-header-logo" priority />
         <span>
           Huellas de <em>Nahuelbuta</em>
@@ -31,18 +36,39 @@ export default function SiteHeader() {
         <Link href="/contacto">{t('contacto')}</Link>
       </nav>
 
-      <div className="site-header-locale">
-        {LOCALES.map(({ code, label }) => (
-          <button
-            key={code}
-            className={`locale-btn${locale === code ? ' active' : ''}`}
-            onClick={() => router.replace(pathname, { locale: code })}
-            aria-current={locale === code}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="site-header-right">
+        <div className="site-header-locale">
+          {LOCALES.map(({ code, label }) => (
+            <button
+              key={code}
+              className={`locale-btn${locale === code ? ' active' : ''}`}
+              onClick={() => router.replace(pathname, { locale: code })}
+              aria-current={locale === code}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          className="site-header-menu-btn"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
+
+      {menuOpen && (
+        <nav className="site-header-mobile-nav" aria-label="Navegación móvil">
+          <Link href="/historia" onClick={closeMenu}>{t('historia')}</Link>
+          <Link href="/sobre-nosotros" onClick={closeMenu}>{t('sobreNosotros')}</Link>
+          <Link href="/brotes-de-chile" onClick={closeMenu}>{t('catalogo')}</Link>
+          <Link href="/contacto" onClick={closeMenu}>{t('contacto')}</Link>
+        </nav>
+      )}
 
       <style jsx>{`
         .site-header {
@@ -105,6 +131,12 @@ export default function SiteHeader() {
           color: var(--gold-light);
         }
 
+        .site-header-right {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
         .site-header-locale {
           display: flex;
           gap: 0.5rem;
@@ -128,22 +160,56 @@ export default function SiteHeader() {
           color: var(--white);
         }
 
+        .site-header-menu-btn {
+          display: none;
+          background: none;
+          border: none;
+          color: var(--cream);
+          padding: 0.25rem;
+          cursor: pointer;
+        }
+
+        .site-header-mobile-nav {
+          display: none;
+        }
+
         @media (max-width: 768px) {
           .site-header {
             padding: 1rem 1.25rem;
-            flex-wrap: wrap;
-            gap: 1rem;
           }
           .site-header-logo {
             height: 36px;
             width: 36px;
           }
           .site-header-nav {
-            order: 3;
-            width: 100%;
-            justify-content: flex-start;
-            gap: 1.25rem;
-            overflow-x: auto;
+            display: none;
+          }
+          .site-header-menu-btn {
+            display: inline-flex;
+          }
+          .site-header-mobile-nav {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            padding: 0.5rem 1.25rem 1.5rem;
+            background: rgba(22, 14, 8, 0.97);
+            backdrop-filter: blur(10px);
+          }
+          .site-header-mobile-nav :global(a) {
+            color: rgba(250, 246, 238, 0.85);
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid rgba(250, 246, 238, 0.1);
+          }
+          .site-header-mobile-nav :global(a:last-child) {
+            border-bottom: none;
           }
         }
       `}</style>
