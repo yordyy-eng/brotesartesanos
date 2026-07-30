@@ -9,7 +9,8 @@ contenido administrable en dos idiomas (ES/EN) desde un CMS propio.
 📚 **Documentación completa:** [`docs/ARQUITECTURA.md`](docs/ARQUITECTURA.md)
 (cómo está armado), [`docs/HISTORIAL.md`](docs/HISTORIAL.md) (qué se hizo y
 por qué), [`docs/IMAGENES.md`](docs/IMAGENES.md) (pipeline de fotos y bugs
-resueltos), [`task.md`](task.md) (pendientes actuales).
+resueltos), [`docs/DEPLOY.md`](docs/DEPLOY.md) (despliegue en producción,
+`huellas.adelchen.cl`), [`task.md`](task.md) (pendientes actuales).
 
 ## 🚀 Tecnologías Principales (Tech Stack)
 
