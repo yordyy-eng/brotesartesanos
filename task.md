@@ -41,9 +41,10 @@ Catálogo administrable por el cliente sin depender de un dev para cada cambio: 
 - [ ] Tienda online (`@payloadcms/plugin-ecommerce`, Beta) — colecciones de Productos/Carritos/Órdenes ya existen como plugin oficial de Payload cuando se necesite.
 - [ ] Bot de orientación para el catálogo (alimentado por el contenido ya estructurado en Payload).
 - [ ] Configurar GitHub Actions (CI/CD).
-- [ ] Implementar Dockerfile para la aplicación Next.js.
+- [x] Implementar Dockerfile para la aplicación Next.js — `Dockerfile` + `docker-compose.prod.yml`, desplegado en el VPS de la agencia (`huellas.adelchen.cl`, ver `docs/DEPLOY.md`).
+- [ ] Tests end-to-end (e2e) — todavía no existen. Playwright ya se usó ad-hoc para screenshots de verificación durante el desarrollo, pero no hay una suite real de tests.
 - [ ] SEO audit (Lighthouse > 90) — el plugin de SEO de Payload ya está activo en `Artisans` y los 4 globals.
-- [ ] Despliegue final a producción — el deadline original de este backlog decía "12 Mayo" (2026), ya pasado a la fecha de hoy (29 jul 2026). Confirmar con el usuario si esto se cumplió o si hay que fijar una fecha nueva.
+- [x] Despliegue final a producción — desplegado en `huellas.adelchen.cl` (VPS Oracle Cloud de adelchen.cl, Docker Compose propio). Ver `docs/DEPLOY.md`.
 
 ---
 
