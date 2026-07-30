@@ -5,6 +5,10 @@ import type { Media } from '@/payload-types'
 import CatalogClient, { type Artisan, type Category } from './catalog-client'
 import SiteHeader from '../_components/SiteHeader'
 
+// El contenido viene de Payload y se edita desde /admin sin rebuild — debe
+// renderizarse por request, no quedar prerenderizado en el build.
+export const dynamic = 'force-dynamic'
+
 export default async function BrotesDeChilePage({ params }: { params: Promise<{ locale: 'es' | 'en' }> }) {
   const { locale } = await params
   setRequestLocale(locale)

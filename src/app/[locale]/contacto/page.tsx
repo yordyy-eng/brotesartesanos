@@ -4,6 +4,8 @@ import { getPayloadClient, getHeroPhotoMix } from '@/lib/payload'
 import SiteHeader from '../_components/SiteHeader'
 import HeroPhotoGrid from '../_components/HeroPhotoGrid'
 
+export const dynamic = 'force-dynamic'
+
 export default async function ContactoPage({ params }: { params: Promise<{ locale: 'es' | 'en' }> }) {
   const { locale } = await params
   setRequestLocale(locale)
