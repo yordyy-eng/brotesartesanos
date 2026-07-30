@@ -19,7 +19,7 @@ export default async function BrotesDeChilePage({ params }: { params: Promise<{ 
     payload.find({ collection: 'artisans', locale, depth: 1, limit: 200, sort: 'name' }),
     payload.find({ collection: 'categories', locale, depth: 0, limit: 50 }),
     payload.findGlobal({ slug: 'home-hero', locale }),
-    getHeroPhotoMix('-name', 160, 150),
+    getHeroPhotoMix('-name', 160, 60),
   ])
 
   const artisans: Artisan[] = artisansResult.docs.map((doc) => ({

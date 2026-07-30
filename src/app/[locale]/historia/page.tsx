@@ -12,7 +12,7 @@ export default async function HistoriaPage({ params }: { params: Promise<{ local
   const payload = await getPayloadClient()
   const [historia, heroPhotos] = await Promise.all([
     payload.findGlobal({ slug: 'historia', locale }),
-    getHeroPhotoMix('craft', 0, 150),
+    getHeroPhotoMix('craft', 0, 60),
   ])
 
   return (

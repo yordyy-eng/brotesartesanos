@@ -13,7 +13,7 @@ export default async function ContactoPage({ params }: { params: Promise<{ local
   const payload = await getPayloadClient()
   const [contacto, heroPhotos] = await Promise.all([
     payload.findGlobal({ slug: 'contacto', locale }),
-    getHeroPhotoMix('-craft', 80, 150),
+    getHeroPhotoMix('-craft', 80, 60),
   ])
 
   return (

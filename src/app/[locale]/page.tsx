@@ -15,7 +15,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: '
   const payload = await getPayloadClient()
   const [home, heroPhotos, galleryPhotos] = await Promise.all([
     payload.findGlobal({ slug: 'agrupacion-home', locale }),
-    getHeroPhotoMix('name', 120, 150),
+    getHeroPhotoMix('name', 120, 60),
     getGalleryPhotos(0, 20),
   ])
 

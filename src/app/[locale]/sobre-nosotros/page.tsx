@@ -12,7 +12,7 @@ export default async function SobreNosotrosPage({ params }: { params: Promise<{ 
   const payload = await getPayloadClient()
   const [sobreNosotros, heroPhotos] = await Promise.all([
     payload.findGlobal({ slug: 'sobre-nosotros', locale }),
-    getHeroPhotoMix('location', 40, 150),
+    getHeroPhotoMix('location', 40, 60),
   ])
   const t = await getTranslations('sobreNosotros')
 
